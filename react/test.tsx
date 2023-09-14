@@ -1,4 +1,10 @@
-import { useCallback, useRef, useState } from 'react';
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 
 const WordRelay = () => {
   const [word, setWord] = useState('Hello');
@@ -6,7 +12,7 @@ const WordRelay = () => {
   const [result, setResult] = useState('');
   const inputEl = useRef<HTMLInputElement>(null);
 
-  const onSubmitForm = useCallback(
+  const onSubmitForm: FormEventHandler<HTMLFormElement> = useCallback(
     (e) => {
       e.preventDefault();
       const input = inputEl.current;
@@ -28,7 +34,7 @@ const WordRelay = () => {
     [word, value]
   );
 
-  const onChange = useCallback((e) => {
+  const onChange: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
     setValue(e.currentTarget.value);
   }, []);
 
