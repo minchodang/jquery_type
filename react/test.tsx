@@ -1,10 +1,20 @@
 import {
   ChangeEventHandler,
   FormEventHandler,
+  FunctionComponent,
   useCallback,
   useRef,
   useState,
 } from 'react';
+
+interface Props {
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  children: React.ReactNode;
+}
+
+const Form: FunctionComponent<Props> = ({ onSubmit, children }) => {
+  return <form onSubmit={onSubmit}>{children}</form>;
+};
 
 const WordRelay = () => {
   const [word, setWord] = useState('Hello');
@@ -41,10 +51,10 @@ const WordRelay = () => {
   return (
     <>
       <div>{word}</div>
-      <form onSubmit={onSubmitForm}>
+      <Form onSubmit={onSubmitForm}>
         <input ref={inputEl} value={value} onChange={onChange} />
         <button>Submit</button>
-      </form>
+      </Form>
       <div>{result}</div>
     </>
   );
