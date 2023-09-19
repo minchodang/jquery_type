@@ -39,7 +39,7 @@ const middleware: RequestHandler<
   req.flash("1회성", "플레시메시지");
   req.flash();
 
-  req.session;
+  req.session.sessionData;
   req.user?.minsu;
 };
 app.get("/", middleware);
